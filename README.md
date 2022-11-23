@@ -26,8 +26,8 @@ The maximum number of cities will be limited to 16 by default for time complexit
 ## Algorithm
 
 ## Goals
-- [ ] graph structure
-- [ ] random graph generation
+- [x] graph structure
+- [x] random graph generation
 - [ ] algorithm itself 
 - [ ] graph creation view
 - [ ] result view
