@@ -25,9 +25,11 @@ The maximum number of cities will be limited to 16 by default for time complexit
   
 ## Algorithm
 
+This algorith uses the brute force approach. It generates all possible paths and remembers the shortest one it saw.
+
 ## Goals
-- [ ] graph structure
-- [ ] random graph generation
+- [x] graph structure
+- [x] random graph generation
 - [ ] algorithm itself 
 - [ ] graph creation view
 - [ ] result view
