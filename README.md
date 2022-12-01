@@ -13,7 +13,7 @@ The maximum number of cities will be limited to 16 by default for time complexit
   4. ? preview of the graph
   5. generate random graph button
   6. ? checkmark to allow more than 16 cities with a warning that it will take a long time 
-- ? pth calculation
+- ? path calculation
   1. nodes visited
   2. current node
   3. current path
@@ -30,7 +30,7 @@ This algorith uses the brute force approach. It generates all possible paths and
 ## Goals
 - [x] graph structure
 - [x] random graph generation
-- [ ] algorithm itself 
+- [x] algorithm itself 
 - [ ] graph creation view
 - [ ] result view
 - [ ] result saving
