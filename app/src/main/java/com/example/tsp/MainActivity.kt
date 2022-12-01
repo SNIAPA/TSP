@@ -2,6 +2,7 @@ package com.example.tsp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -10,7 +11,8 @@ class MainActivity : AppCompatActivity() {
 
         var graph = Graph()
         var algo = Algorithm(graph)
-        algo.solve()
+        var path = algo.solve()
+        Log.d("ans",path.toString())
 
 
     }
