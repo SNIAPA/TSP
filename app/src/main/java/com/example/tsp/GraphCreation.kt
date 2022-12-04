@@ -114,7 +114,13 @@ class GraphCreation : Fragment() {
 
             calculatePathButton.setOnClickListener {
 
+                if (cities.size < 3){
+                    errorPopup("Not enough cities")
+                }
+
                 val graph = Graph(cities.map { Vertex(it.lat,it.lat) })
+
+                parentFragmentManager.beginTransaction().replace(R.id.fragmentContainer,GraphCalculation(graph)).commitNow()
 
 
             }
