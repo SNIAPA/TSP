@@ -32,7 +32,7 @@ class Algorithm {
         this.graph = graph
     }
 
-    fun calculatePath(permutation: List<Int>): Double? {
+    private fun calculatePath(permutation: List<Int>): Double? {
 
         var currentPath = 0.toDouble()
         for (i in 1 until permutation.size){
@@ -40,7 +40,7 @@ class Algorithm {
             val n1 = permutation[i-1]
             val n2 = permutation[i]
 
-            val edge = graph.getEdge(n1,n2) ?: return null
+            val edge = graph.getEdge(n1,n2)
 
             currentPath +=  edge
 
