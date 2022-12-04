@@ -11,8 +11,9 @@ import android.widget.TableRow
 import android.widget.TextView
 import android.widget.Toast
 import com.google.android.material.textfield.TextInputEditText
+import kotlin.random.Random
 
-data class City(val name: String, val lat: Double, val long:Double)
+data class City(val name: String, val lat: Double, val long:Double, val view:TableRow)
 
 class GraphCreation : Fragment() {
 
@@ -42,21 +43,25 @@ class GraphCreation : Fragment() {
 
     private fun addCity(name:String, lat:Double,long:Double){
 
-        cities.add(City(name,lat,long))
-
-
         val cityRow = TableRow(context)
         cityRow.addView(TextView(context).apply { text = name;gravity=1 })
         cityRow.addView(TextView(context).apply { text = lat.toString();gravity=1 })
         cityRow.addView(TextView(context).apply { text = long.toString();gravity=1 })
 
-        this.cityTable.addView(cityRow)
+        cities.add(City(name,lat,long,cityRow))
+        cityTable.addView(cityRow)
+    }
+
+    private fun clearCities(){
+        cities.forEach{
+            cityTable.removeView(it.view)
+        }
     }
 
     private fun errorPopup(message:String){
         //TODO: this aint workin for some reason
         // Im suspecting the context is fucked
-        Toast.makeText(requireContext() ,message,Toast.LENGTH_LONG)
+        Toast.makeText(context ,message,Toast.LENGTH_LONG)
     }
 
     override fun onCreateView(
@@ -94,6 +99,18 @@ class GraphCreation : Fragment() {
                 addCity(nameInput.text.toString(), lat, long)
 
             }
+
+            randomizeButton.setOnClickListener {
+
+                clearCities()
+                for ( i in 0..CITY_LIMIT){
+                    addCity(i.toString(),Random.nextInt(10).toDouble(),Random.nextInt(10).toDouble())
+                }
+
+
+            }
+
+
 
             return this
         }
