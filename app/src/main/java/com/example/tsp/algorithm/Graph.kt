@@ -1,6 +1,5 @@
-package com.example.tsp
+package com.example.tsp.algorithm
 
-import kotlin.math.max
 import kotlin.math.pow
 import kotlin.math.sqrt
 import kotlin.random.Random

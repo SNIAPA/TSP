@@ -5,4 +5,5 @@
     <string name="longInputLabel">long:</string>
     <string name="latInputLabel">lat:</string>
     <string name="NameInputLabel">name:</string>
+    <string name="addButtonLabel">ADD</string>
 </resources>

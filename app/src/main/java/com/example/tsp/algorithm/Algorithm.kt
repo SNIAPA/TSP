@@ -1,6 +1,4 @@
-package com.example.tsp
-
-import android.util.Log
+package com.example.tsp.algorithm
 
 
 class Algorithm {
@@ -26,7 +24,7 @@ class Algorithm {
         }
     }
 
-    var graph:Graph;
+    var graph: Graph;
 
     constructor(graph: Graph){
         this.graph = graph
