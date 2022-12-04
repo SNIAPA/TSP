@@ -39,7 +39,7 @@ class GraphCreation : Fragment() {
     }
 
     private fun parseErrorPopup(varName:String){
-        //TODO: thsi ait workin for some reason
+        //TODO: this aint workin for some reason
         // Im suspecting the context is fucked
         Toast.makeText(requireContext() ,"Invalid %s .".format(varName),Toast.LENGTH_LONG)
     }
@@ -54,12 +54,18 @@ class GraphCreation : Fragment() {
 
             addButton.setOnClickListener {
 
-                var lat = latInput.toString().toDoubleOrNull()
+                val name = nameInput.text.toString()
+                if(name.isEmpty()){
+                    parseErrorPopup("name")
+                    return@setOnClickListener
+                }
+
+                val lat = latInput.text.toString().toDoubleOrNull()
                 if(lat == null){
                     parseErrorPopup("latitude")
                     return@setOnClickListener
                 }
-                var long = longInput.toString().toDoubleOrNull()
+                val long = longInput.text.toString().toDoubleOrNull()
                 if(long == null){
                     parseErrorPopup("longitude")
                     return@setOnClickListener
