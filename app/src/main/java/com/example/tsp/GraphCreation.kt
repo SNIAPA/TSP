@@ -1,12 +1,6 @@
 package com.example.tsp
 
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
-import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.text.PrecomputedText.Params
-import android.util.AttributeSet
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -26,6 +20,8 @@ class GraphCreation : Fragment() {
     private lateinit var latInput: TextInputEditText
     private lateinit var longInput: TextInputEditText
     private lateinit var addButton: Button
+    private lateinit var randomizeButton: Button
+    private lateinit var calculatePathButton: Button
     private lateinit var cityTable: TableLayout
 
     private var cities = mutableListOf<City>()
@@ -37,6 +33,8 @@ class GraphCreation : Fragment() {
             latInput = findViewById(R.id.latInput)
             longInput = findViewById(R.id.longInput)
             addButton = findViewById(R.id.addButton)
+            randomizeButton = findViewById(R.id.randomizeButton)
+            calculatePathButton = findViewById(R.id.calculatePathButton)
             cityTable = findViewById(R.id.cityTable)
         }
 
@@ -55,10 +53,10 @@ class GraphCreation : Fragment() {
         this.cityTable.addView(cityRow)
     }
 
-    private fun parseErrorPopup(varName:String){
+    private fun errorPopup(message:String){
         //TODO: this aint workin for some reason
         // Im suspecting the context is fucked
-        Toast.makeText(requireContext() ,"Invalid %s .".format(varName),Toast.LENGTH_LONG)
+        Toast.makeText(requireContext() ,message,Toast.LENGTH_LONG)
     }
 
     override fun onCreateView(
@@ -71,20 +69,25 @@ class GraphCreation : Fragment() {
 
             addButton.setOnClickListener {
 
+                if(cities.size >= CITY_LIMIT){
+                    errorPopup("City limit is %s".format(CITY_LIMIT))
+                    return@setOnClickListener
+                }
+
                 val name = nameInput.text.toString()
                 if(name.isEmpty()){
-                    parseErrorPopup("name")
+                    errorPopup("Invalid name")
                     return@setOnClickListener
                 }
 
                 val lat = latInput.text.toString().toDoubleOrNull()
                 if(lat == null){
-                    parseErrorPopup("latitude")
+                    errorPopup("Invalid latitude")
                     return@setOnClickListener
                 }
                 val long = longInput.text.toString().toDoubleOrNull()
                 if(long == null){
-                    parseErrorPopup("longitude")
+                    errorPopup("Invalid longitude")
                     return@setOnClickListener
                 }
 

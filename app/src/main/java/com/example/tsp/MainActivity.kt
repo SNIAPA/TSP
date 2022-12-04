@@ -6,6 +6,8 @@ import android.util.Log
 import com.example.tsp.algorithm.Algorithm
 import com.example.tsp.algorithm.Graph
 
+const val CITY_LIMIT = 6
+
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
