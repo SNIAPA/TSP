@@ -49,7 +49,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
                 android:gravity="center"
-                android:text="name:" />
+                android:text="@string/NameInputLabel" />
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/nameInput"
@@ -61,7 +61,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
                 android:gravity="center"
-                android:text="long:" />
+                android:text="@string/longInputLabel" />
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/longInput"
@@ -73,7 +73,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
                 android:gravity="center"
-                android:text="lat:" />
+                android:text="@string/latInputLabel" />
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/latInput"

@@ -2,4 +2,7 @@
     <string name="app_name">TSP</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="longInputLabel">long:</string>
+    <string name="latInputLabel">lat:</string>
+    <string name="NameInputLabel">name:</string>
 </resources>
