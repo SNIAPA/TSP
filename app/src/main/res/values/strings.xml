@@ -6,4 +6,6 @@
     <string name="latInputLabel">lat:</string>
     <string name="NameInputLabel">name:</string>
     <string name="addButtonLabel">ADD</string>
+    <string name="estimated_time_label">Estimated time:</string>
+    <string name="calculate_button_label">CALCULATE</string>
 </resources>
