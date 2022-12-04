@@ -32,9 +32,9 @@ class Algorithm {
         this.graph = graph
     }
 
-    fun calculatePath(permutation: List<Int>): Int? {
+    fun calculatePath(permutation: List<Int>): Double? {
 
-        var currentPath = 0
+        var currentPath = 0.toDouble()
         for (i in 1 until permutation.size){
 
             val n1 = permutation[i-1]
@@ -42,19 +42,18 @@ class Algorithm {
 
             val edge = graph.getEdge(n1,n2) ?: return null
 
-            currentPath +=  edge.c
+            currentPath +=  edge
 
         }
         return currentPath
     }
 
-    fun solve(): Pair<List<Int>, Int>? {
-        val permutations = permutations((0 until graph.nodeCount).toList() )
+    fun solve(): Pair<List<Int>, Double>? {
+        val permutations = permutations((0 until graph.vertices.size).toList() )
 
-        var ans = Pair(listOf<Int>(),Int.MAX_VALUE)
+        var ans = Pair(listOf<Int>(),Double.MAX_VALUE.toDouble())
 
         for (permutation in permutations){
-
 
             var currentPath = calculatePath(permutation) ?: continue
 
@@ -64,7 +63,7 @@ class Algorithm {
             }
         }
 
-        if (ans.second == Int.MAX_VALUE){
+        if (ans.second == Double.MAX_VALUE){
 
             return null
         }
