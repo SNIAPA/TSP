@@ -14,6 +14,9 @@ class Graph {
             ((vertices[n1].y - vertices[n2].y)).pow(2)
         )
     }
+    constructor(vertices:List<Vertex>){
+        this.vertices = vertices
+    }
 
     constructor(vertexCount: Int = 5, maxEdgeCost: Int = 10) {
 

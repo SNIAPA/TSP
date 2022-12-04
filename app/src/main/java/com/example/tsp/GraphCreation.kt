@@ -10,6 +10,8 @@ import android.widget.TableLayout
 import android.widget.TableRow
 import android.widget.TextView
 import android.widget.Toast
+import com.example.tsp.algorithm.Graph
+import com.example.tsp.algorithm.Vertex
 import com.google.android.material.textfield.TextInputEditText
 import kotlin.random.Random
 
@@ -110,6 +112,12 @@ class GraphCreation : Fragment() {
 
             }
 
+            calculatePathButton.setOnClickListener {
+
+                val graph = Graph(cities.map { Vertex(it.lat,it.lat) })
+
+
+            }
 
 
             return this
