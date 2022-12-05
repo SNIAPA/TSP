@@ -1,7 +1,15 @@
 package com.example.tsp.algorithm
 
+import com.example.tsp.utils.Event
+
 
 class Algorithm {
+
+    data class UpdateEvent(val currentPath: Pair<List<Int>,Double>,val progress: Pair<Int,Int>, val best:Pair<List<Int>,Double>) {
+        companion object : Event<UpdateEvent>()
+
+        fun emit() = Companion.emit(this)
+    }
 
 
     private fun <T>permutations(list: List<T>)  = sequence<List<T>> {
@@ -24,13 +32,13 @@ class Algorithm {
         }
     }
 
-    var graph: Graph;
+    private var graph: Graph
 
     constructor(graph: Graph){
         this.graph = graph
     }
 
-    private fun calculatePath(permutation: List<Int>): Double? {
+    private fun calculatePath(permutation: List<Int>): Double {
 
         var currentPath = 0.toDouble()
         for (i in 1 until permutation.size){
@@ -49,19 +57,23 @@ class Algorithm {
     fun solve(): Pair<List<Int>, Double>? {
         val permutations = permutations((0 until graph.vertices.size).toList() )
 
-        var ans = Pair(listOf<Int>(),Double.MAX_VALUE.toDouble())
+        var ans = Pair(listOf<Int>(),Double.MAX_VALUE)
 
+        var i = 0;
         for (permutation in permutations){
 
-            var currentPath = calculatePath(permutation) ?: continue
+            var currentPath = calculatePath(permutation)
+
 
             if (currentPath <  ans.second) {
                 ans = Pair(permutation,currentPath)
-
             }
+            UpdateEvent(Pair(permutation,currentPath),Pair(i,permutation.size),ans)
+            i++
         }
 
         if (ans.second == Double.MAX_VALUE){
+
 
             return null
         }

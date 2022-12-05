@@ -5,12 +5,27 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ProgressBar
+import android.widget.TextView
 import com.example.tsp.algorithm.Graph
 
 
 class GraphCalculation(val graph: Graph) : Fragment() {
 
+    lateinit var progressBar: ProgressBar
+    lateinit var cancelButton: Button
+    lateinit var estimatedTimeeTextView: TextView
+
     private fun initializeComponents(view: View){
+
+        with(view){
+
+            progressBar = findViewById(R.id.progressBar)
+            cancelButton = findViewById(R.id.cancelButton)
+            estimatedTimeeTextView = findViewById(R.id.estimatedTimeTextView)
+
+        }
 
     }
 
