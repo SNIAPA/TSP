@@ -1,15 +1,16 @@
 package com.example.tsp.algorithm
 
 import com.example.tsp.utils.Event
+import com.example.tsp.utils.UpdateEvent
+import com.example.tsp.utils.UpdateEventData
 
 
 class Algorithm {
 
-    data class UpdateEvent(val currentPath: Pair<List<Int>,Double>,val progress: Pair<Int,Int>, val best:Pair<List<Int>,Double>) {
-        companion object : Event<UpdateEvent>()
 
-        fun emit() = Companion.emit(this)
-    }
+    val updateEvent = UpdateEvent()
+
+
 
 
     private fun <T>permutations(list: List<T>)  = sequence<List<T>> {
@@ -68,7 +69,7 @@ class Algorithm {
             if (currentPath <  ans.second) {
                 ans = Pair(permutation,currentPath)
             }
-            UpdateEvent(Pair(permutation,currentPath),Pair(i,permutation.size),ans)
+            updateEvent.emit(UpdateEventData(Pair(permutation,currentPath),Pair(i,permutation.size),ans))
             i++
         }
 

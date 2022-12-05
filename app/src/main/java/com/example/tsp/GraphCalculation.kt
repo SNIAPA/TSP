@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
+import com.example.tsp.algorithm.Algorithm
 import com.example.tsp.algorithm.Graph
 
 
@@ -15,7 +16,9 @@ class GraphCalculation(val graph: Graph) : Fragment() {
 
     lateinit var progressBar: ProgressBar
     lateinit var cancelButton: Button
-    lateinit var estimatedTimeeTextView: TextView
+    lateinit var estimatedTimeTextView: TextView
+
+    lateinit var algorithm: Algorithm
 
     private fun initializeComponents(view: View){
 
@@ -23,7 +26,7 @@ class GraphCalculation(val graph: Graph) : Fragment() {
 
             progressBar = findViewById(R.id.progressBar)
             cancelButton = findViewById(R.id.cancelButton)
-            estimatedTimeeTextView = findViewById(R.id.estimatedTimeTextView)
+            estimatedTimeTextView = findViewById(R.id.estimatedTimeTextView)
 
         }
 
@@ -36,6 +39,16 @@ class GraphCalculation(val graph: Graph) : Fragment() {
         with(inflater.inflate(R.layout.fragment_graph_calculation, container, false)){
 
             initializeComponents(this)
+
+            algorithm = Algorithm(graph)
+
+            algorithm.updateEvent.on {
+                progressBar.progress = it.progress.first/it.progress.second
+
+            }
+            algorithm.solve()
+
+
 
 
 
