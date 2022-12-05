@@ -15,6 +15,7 @@
             android:layout_weight="1"
             />
         <ProgressBar
+            android:id="@+id/progressBar"
             style="?android:attr/progressBarStyleHorizontal"
             android:padding="10dp"
             android:layout_width="match_parent"
@@ -43,9 +44,10 @@
             android:layout_weight="1"
             />
         <Button
+            android:id="@+id/cancelButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
-            android:text="@string/calculate_button_label"/>
+            android:text="@string/cancel_button_label"/>
     </LinearLayout>
 </FrameLayout>
