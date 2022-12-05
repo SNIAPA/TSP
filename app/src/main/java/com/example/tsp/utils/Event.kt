@@ -14,6 +14,6 @@ open class Event<T> {
     }
 }
 
-data class UpdateEventData(val currentPath: Pair<List<Int>,Double>,val progress: Pair<Int,Int>, val best:Pair<List<Int>,Double>)
+data class UpdateEventData(val currentPath: Pair<List<Int>,Double>,val progress:Int, val best:Pair<List<Int>,Double>)
 
 class UpdateEvent: Event<UpdateEventData>()

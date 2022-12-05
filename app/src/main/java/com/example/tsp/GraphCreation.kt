@@ -105,7 +105,7 @@ class GraphCreation : Fragment() {
             randomizeButton.setOnClickListener {
 
                 clearCities()
-                for ( i in 0..CITY_LIMIT){
+                for ( i in 0 until CITY_LIMIT){
                     addCity(i.toString(),Random.nextInt(10).toDouble(),Random.nextInt(10).toDouble())
                 }
 
@@ -120,8 +120,8 @@ class GraphCreation : Fragment() {
 
                 val graph = Graph(cities.map { Vertex(it.lat,it.lat) })
 
-                parentFragmentManager.beginTransaction().replace(R.id.fragmentContainer,GraphCalculation(graph)).commitNow()
-
+                GraphCalculation.graph = graph
+                parentFragmentManager.beginTransaction().replace(R.id.fragmentContainer,GraphCalculation()).commit()
 
             }
 

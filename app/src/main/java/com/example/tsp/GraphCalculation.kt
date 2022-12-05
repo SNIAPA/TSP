@@ -1,6 +1,7 @@
 package com.example.tsp
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,13 +11,20 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import com.example.tsp.algorithm.Algorithm
 import com.example.tsp.algorithm.Graph
+import com.example.tsp.utils.UpdateEvent
+import com.example.tsp.utils.UpdateEventData
 
 
-class GraphCalculation(val graph: Graph) : Fragment() {
+class GraphCalculation() : Fragment() {
+
+    companion object {
+        lateinit var graph: Graph
+    }
+
 
     lateinit var progressBar: ProgressBar
     lateinit var cancelButton: Button
-    lateinit var estimatedTimeTextView: TextView
+    lateinit var nextButton: Button
 
     lateinit var algorithm: Algorithm
 
@@ -26,11 +34,12 @@ class GraphCalculation(val graph: Graph) : Fragment() {
 
             progressBar = findViewById(R.id.progressBar)
             cancelButton = findViewById(R.id.cancelButton)
-            estimatedTimeTextView = findViewById(R.id.estimatedTimeTextView)
+            nextButton = findViewById(R.id.nextButton)
 
         }
 
     }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,13 +49,24 @@ class GraphCalculation(val graph: Graph) : Fragment() {
 
             initializeComponents(this)
 
+            cancelButton.setOnClickListener {
+                parentFragmentManager.beginTransaction().replace(R.id.fragmentContainer,GraphCreation()).commit()
+            }
+
             algorithm = Algorithm(graph)
 
-            algorithm.updateEvent.on {
-                progressBar.progress = it.progress.first/it.progress.second
 
+            algorithm.updateEvent.on {
+                progressBar.progress = (it.progress.toDouble()/algorithm.permutationCount.toDouble() * progressBar.max.toDouble()).toInt()
             }
-            algorithm.solve()
+
+            (Thread{
+                val ans = algorithm.solve()
+                activity?.runOnUiThread {
+                    nextButton.isEnabled = true
+
+                }
+            }).start()
 
 
 

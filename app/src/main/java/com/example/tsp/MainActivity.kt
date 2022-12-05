@@ -9,7 +9,7 @@ import androidx.fragment.app.FragmentContainerView
 import com.example.tsp.algorithm.Algorithm
 import com.example.tsp.algorithm.Graph
 
-const val CITY_LIMIT = 6
+const val CITY_LIMIT = 8
 
 class MainActivity : AppCompatActivity() {
 

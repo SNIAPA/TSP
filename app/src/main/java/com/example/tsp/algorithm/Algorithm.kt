@@ -1,5 +1,6 @@
 package com.example.tsp.algorithm
 
+import android.util.Log
 import com.example.tsp.utils.Event
 import com.example.tsp.utils.UpdateEvent
 import com.example.tsp.utils.UpdateEventData
@@ -8,8 +9,18 @@ import com.example.tsp.utils.UpdateEventData
 class Algorithm {
 
 
-    val updateEvent = UpdateEvent()
+    val updateEvent = UpdateEvent();
+    var permutationCount:Int
 
+
+    private fun factorial(num:Int):Int{
+
+        if(num <= 0){
+            return 1
+        }
+        return factorial(num-1)*num
+
+    }
 
 
 
@@ -37,6 +48,8 @@ class Algorithm {
 
     constructor(graph: Graph){
         this.graph = graph
+        this.permutationCount = factorial(graph.vertices.size)
+
     }
 
     private fun calculatePath(permutation: List<Int>): Double {
@@ -69,7 +82,8 @@ class Algorithm {
             if (currentPath <  ans.second) {
                 ans = Pair(permutation,currentPath)
             }
-            updateEvent.emit(UpdateEventData(Pair(permutation,currentPath),Pair(i,permutation.size),ans))
+
+            updateEvent.emit(UpdateEventData(Pair(permutation,currentPath),i,ans))
             i++
         }
 
@@ -82,6 +96,5 @@ class Algorithm {
 
 
     }
-
 
 }

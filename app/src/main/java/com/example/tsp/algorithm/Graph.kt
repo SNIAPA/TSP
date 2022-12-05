@@ -7,7 +7,7 @@ import kotlin.random.Random
 data class Vertex(val x:Double, val y:Double)
 
 class Graph {
-    lateinit var vertices:List<Vertex>
+    var vertices:List<Vertex>
     fun getEdge(n1:Int,n2:Int):Double {
         return sqrt (
             ((vertices[n1].x - vertices[n2].x)).pow(2) +
