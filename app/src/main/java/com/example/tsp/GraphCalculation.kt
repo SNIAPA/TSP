@@ -15,12 +15,11 @@ import com.example.tsp.utils.UpdateEvent
 import com.example.tsp.utils.UpdateEventData
 
 
-class GraphCalculation() : Fragment() {
+class GraphCalculation : Fragment() {
 
     companion object {
         lateinit var graph: Graph
     }
-
 
     lateinit var progressBar: ProgressBar
     lateinit var cancelButton: Button
@@ -51,9 +50,11 @@ class GraphCalculation() : Fragment() {
 
             cancelButton.setOnClickListener {
                 parentFragmentManager.beginTransaction().replace(R.id.fragmentContainer,GraphCreation()).commit()
+
             }
 
-            algorithm = Algorithm(graph)
+
+            algorithm = Algorithm(GraphCalculation.graph)
 
 
             algorithm.updateEvent.on {
@@ -64,6 +65,11 @@ class GraphCalculation() : Fragment() {
                 val ans = algorithm.solve()
                 activity?.runOnUiThread {
                     nextButton.isEnabled = true
+
+                    nextButton.setOnClickListener {
+                        GraphResult.ans = ans
+                        parentFragmentManager.beginTransaction().replace(R.id.fragmentContainer,GraphResult()).commit()
+                    }
 
                 }
             }).start()
